@@ -13,7 +13,6 @@ SELECT
 	,T3.CHRG_3
 	,T3.DT_3
 	,P.POL_STOP_DT
-	,P.CNCL_DT
 	--,DAYS(P.POL_STOP_DT)-DAYS(T1.TRAN_DT) DAY_DIFF
 	,CASE
 		WHEN DAYS(P.CNCL_DT)-DAYS(T1.TRAN_DT) > 30 THEN 1
@@ -112,7 +111,7 @@ WHERE P.POL_STOP_DT = (SELECT
 							  FROM M20.POLICY
 							  WHERE P.POL_ID_NBR = POL_ID_NBR )
 
-
+AND P.POL_STOP_DT >= '01/01/2017'
 
 /*
    The query below gathers information on every mastercard payment made by on behalf of 
